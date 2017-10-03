@@ -57,10 +57,13 @@ bool SphereIntersecting(CubePlanes cube, vec4 light)
 
 bool SphereColliding(CubePlanes cube, vec4 light)
 {
-	return (SphereInside(cube, light) || SphereIntersecting(cube, light));
+	// there is no need for both; just 6x Plane check is sufficient (bonus speed)
+	//return (SphereInside(cube, light) || SphereIntersecting(cube, light));
+	return SphereInside(cube, light);
 }
 
 float Length(vec3 v) 
 {
-	return sqrt((v.x*v.x) + (v.y*v.y) + (v.z*v.z));
+	//glsl has an in-built function for this
+	return length(v); //sqrt((v.x*v.x) + (v.y*v.y) + (v.z*v.z));
 }
